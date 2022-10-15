@@ -12,6 +12,7 @@ module.exports = {
         'no-undef': 'off',
         'prettier/prettier': 0,
         'react-native/no-inline-styles': 0,
+        '@typescript-eslint/no-unused-vars': 0,
       },
     },
   ],
