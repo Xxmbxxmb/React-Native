@@ -5,7 +5,6 @@ import {
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
 import { SettingsScreen } from '../screens/SettingsScreen';
-import { StackNavigator } from './StackNavigator';
 import {
   useWindowDimensions,
   Text,
@@ -14,7 +13,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { styles } from '../theme/appTheme';
-import { createStackNavigator } from '@react-navigation/stack';
+import { Tabs } from './BottomTab';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Drawer = createDrawerNavigator();
 
@@ -26,10 +26,11 @@ export const MenuLateral = () => {
       drawerContent={props => <MenuInterno {...props} />}
       screenOptions={{
         // drawerPosition: 'right', // Cambia el menu de lugar
-        headerShown: false, // Oculta la hamburguesa
+        // headerShown: false, // Oculta la hamburguesa
+        drawerIcon: () => <Icon name="logo-stackoverflow" />,
         drawerType: width >= 768 ? 'permanent' : 'front',
       }}>
-      <Drawer.Screen name="StackNavigator" component={StackNavigator} />
+      <Drawer.Screen name="Tabs" component={Tabs} />
       <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
     </Drawer.Navigator>
   );
@@ -50,14 +51,20 @@ const MenuInterno = ({ navigation }: DrawerContentComponentProps) => {
       {/* Menu options */}
       <View style={styles.menuContainer}>
         <TouchableOpacity
-          style={styles.menuBtn}
-          onPress={() => navigation.navigate('StackNavigator')}>
+          style={{
+            ...styles.menuBtn,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
+          onPress={() => navigation.navigate('Tabs')}>
+          <Icon name="navigate-outline" size={20} />
           <Text style={styles.textoMenu}>Navegacion</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.menuBtn}
+          style={{ ...styles.menuBtn, flexDirection: 'row' }}
           onPress={() => navigation.navigate('SettingsScreen')}>
+          <Icon name="settings-outline" size={20} />
           <Text style={styles.textoMenu}>Ajustes</Text>
         </TouchableOpacity>
       </View>
