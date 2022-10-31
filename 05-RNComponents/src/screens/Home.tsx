@@ -4,14 +4,9 @@ import styles from '../theme/appTheme';
 import { FlatListMenuItem } from '../components/FlatListMenuItem';
 import { menuItems } from '../data/menuItems';
 import { HeaderTitle } from '../components/HeaderTitle';
+import { ItemSeparator } from '../components/ItemSeparator';
 
 export const Home = () => {
-  const itemSeparator = () => {
-    return (
-      <View style={{ borderBottomWidth: 2, marginVertical: 8, opacity: 0.4 }} />
-    );
-  };
-
   return (
     <View style={{ flex: 1, ...styles.globalMargin }}>
       <FlatList
@@ -19,7 +14,7 @@ export const Home = () => {
         renderItem={({ item }) => <FlatListMenuItem menuItem={item} />}
         keyExtractor={item => item.name}
         ListHeaderComponent={() => <HeaderTitle title="Opciones de menu" />}
-        ItemSeparatorComponent={itemSeparator}
+        ItemSeparatorComponent={() => <ItemSeparator />}
       />
     </View>
   );
