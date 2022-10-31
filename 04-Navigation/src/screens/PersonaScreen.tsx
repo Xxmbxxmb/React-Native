@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { RootStackParams } from '../navigator/StackNavigator';
 import { styles } from '../theme/appTheme';
+import { useAppDispatch } from '../redux/hooks';
+import { setUsername } from '../redux/slices/auth';
 
 // interface RouterParams {
 //   id: number;
@@ -13,11 +15,16 @@ interface Props extends StackScreenProps<RootStackParams, 'PersonaScreen'> {}
 export const PersonaScreen = ({ route, navigation }: Props) => {
   //   const params = route.params as RouterParams;
   const params = route.params;
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     navigation.setOptions({
       title: params.nombre,
     });
+  }, []);
+
+  useEffect(() => {
+    dispatch(setUsername(params.nombre));
   }, []);
 
   return (
