@@ -100,7 +100,9 @@ export const SectionListScreen = () => {
           </View>
         )}
         stickySectionHeadersEnabled={true}
-        renderItem={({ item }) => <Text>{item}</Text>}
+        renderItem={({ item }) => (
+          <Text style={{ color: 'black' }}>{item}</Text>
+        )}
         renderSectionHeader={({ section }) => (
           <View style={{ backgroundColor: 'white' }}>
             <HeaderTitle title={section.casa} />

@@ -85,5 +85,6 @@ const stylesState = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 10,
     marginVertical: 10,
+    color: 'black',
   },
 });
