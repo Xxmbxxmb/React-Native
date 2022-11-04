@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, Animated, Button } from 'react-native';
 import { useAnimation } from '../hooks/useAnimation';
+import { useAppSelector } from '../redux/hooks';
 
 export const Animation101 = () => {
   const { opacity, fadeIn, fadeOut, position, startMoving } = useAnimation();
+  const { colors } = useAppSelector(state => state.theme.theme);
 
   return (
     <View style={styles.container}>
@@ -12,6 +14,7 @@ export const Animation101 = () => {
           ...styles.purpleBox,
           opacity,
           transform: [{ translateY: position }],
+          backgroundColor: colors.primary,
         }}
       />
       <View
@@ -26,8 +29,9 @@ export const Animation101 = () => {
             fadeIn();
             startMoving(100);
           }}
+          color={colors.primary}
         />
-        <Button title="FadeOut" onPress={fadeOut} />
+        <Button title="FadeOut" onPress={fadeOut} color={colors.primary} />
       </View>
     </View>
   );

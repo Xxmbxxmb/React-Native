@@ -8,9 +8,11 @@ import {
 } from 'react-native';
 import { FadeInImage } from '../components/FadeInImage';
 import { HeaderTitle } from '../components/HeaderTitle';
+import { useAppSelector } from '../redux/hooks';
 
 export const InfiniteScroll = () => {
   const [numbers, setNumbers] = useState([0, 1, 2, 3, 4, 5]);
+  const { colors } = useAppSelector(state => state.theme.theme);
 
   const renderItem = (item: number) => {
     return (
@@ -57,7 +59,7 @@ export const InfiniteScroll = () => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <ActivityIndicator size={20} color="#5856D6" />
+            <ActivityIndicator size={20} color={colors.primary} />
           </View>
         )}
       />

@@ -1,7 +1,10 @@
 import React, { useRef } from 'react';
 import { View, StyleSheet, Animated, PanResponder } from 'react-native';
+import { useAppSelector } from '../redux/hooks';
 
 export const Animation102 = () => {
+  const { colors } = useAppSelector(state => state.theme.theme);
+
   const pan = useRef(new Animated.ValueXY()).current;
 
   const panResponder = PanResponder.create({
@@ -21,7 +24,11 @@ export const Animation102 = () => {
     <View style={styles.container}>
       <Animated.View
         {...panResponder.panHandlers}
-        style={[pan.getLayout(), styles.purpleBox]}
+        style={{
+          ...pan.getLayout(),
+          ...styles.purpleBox,
+          backgroundColor: colors.primary,
+        }}
       />
     </View>
   );

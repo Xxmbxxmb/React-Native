@@ -13,6 +13,7 @@ import {
 import { CustomSwitch } from '../components/CustomSwitch';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { useForm } from '../hooks/useForm';
+import { useAppSelector } from '../redux/hooks';
 import styles from '../theme/appTheme';
 
 export const TextInputsScreen = () => {
@@ -23,6 +24,11 @@ export const TextInputsScreen = () => {
     isSubscribed: false,
   });
 
+  const {
+    theme: { colors },
+    dividerColor,
+  } = useAppSelector(state => state.theme);
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -31,16 +37,26 @@ export const TextInputsScreen = () => {
           <View style={styles.globalMargin}>
             <HeaderTitle title="Text Inputs" />
             <TextInput
-              style={stylesState.input}
+              style={{
+                ...stylesState.input,
+                borderColor: colors.text,
+                color: colors.text,
+              }}
               placeholder={'Ingrese su Nombre'}
+              placeholderTextColor={dividerColor}
               autoCorrect={false}
               autoCapitalize="words"
               onChangeText={value => onChange(value, 'name')}
               keyboardAppearance={'dark'} //IOS solamente
             />
             <TextInput
-              style={stylesState.input}
+              style={{
+                ...stylesState.input,
+                borderColor: colors.text,
+                color: colors.text,
+              }}
               placeholder={'Ingrese su Email'}
+              placeholderTextColor={dividerColor}
               value={form.email}
               autoCorrect={false}
               onChangeText={value => onChange(value, 'email')}
@@ -60,10 +76,16 @@ export const TextInputsScreen = () => {
             </View>
 
             <HeaderTitle title={JSON.stringify(form, null, 3)} />
+            <HeaderTitle title={JSON.stringify(form, null, 3)} />
 
             <TextInput
-              style={stylesState.input}
+              style={{
+                ...stylesState.input,
+                borderColor: colors.text,
+                color: colors.text,
+              }}
               placeholder={'Ingrese su Telefono'}
+              placeholderTextColor={dividerColor}
               value={form.phone}
               autoCorrect={false}
               onChangeText={value => onChange(value, 'phone')}
@@ -80,7 +102,6 @@ export const TextInputsScreen = () => {
 const stylesState = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: 'rgba(0, 0, 0, 0.3)',
     height: 50,
     paddingHorizontal: 10,
     borderRadius: 10,

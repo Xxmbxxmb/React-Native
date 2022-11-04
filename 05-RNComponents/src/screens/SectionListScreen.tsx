@@ -2,6 +2,7 @@ import React from 'react';
 import { SectionList, Text, View } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { ItemSeparator } from '../components/ItemSeparator';
+import { useAppSelector } from '../redux/hooks';
 import styles from '../theme/appTheme';
 
 interface Casas {
@@ -88,6 +89,7 @@ const info: Casas[] = [
 ];
 
 export const SectionListScreen = () => {
+  const { colors } = useAppSelector(state => state.theme.theme);
   return (
     <View style={{ ...styles.globalMargin, flex: 1 }}>
       <SectionList
@@ -101,10 +103,10 @@ export const SectionListScreen = () => {
         )}
         stickySectionHeadersEnabled={true}
         renderItem={({ item }) => (
-          <Text style={{ color: 'black' }}>{item}</Text>
+          <Text style={{ color: colors.text }}>{item}</Text>
         )}
         renderSectionHeader={({ section }) => (
-          <View style={{ backgroundColor: 'white' }}>
+          <View style={{ backgroundColor: colors.background }}>
             <HeaderTitle title={section.casa} />
           </View>
         )}
